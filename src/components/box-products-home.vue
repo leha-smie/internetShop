@@ -1,6 +1,5 @@
 <template>
     <section class="products container">
-		hello
         <h3 id="yak1" class="products__h3">Fetured Items</h3>
         <p class="products__p">
             Shop for items based on what we featured in this week
