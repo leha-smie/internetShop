@@ -1,11 +1,11 @@
 <template>
     <div class="header container">
         <div class="header__logo logo">
-            <a href="http://localhost:8080" class="logo__link">
+            <router-link :to="{ name: 'Home' }" class="logo__link">
                 <img class="logo__img" src="/img/logo.png" alt="logo" />
                 <p class="logo__p">BRAN</p>
                 <p class="logo__p logo__p_red">D</p>
-            </a>
+            </router-link>
         </div>
         <div class="header__search-box search-box">
             <button class="search-box__button">Browse</button>
