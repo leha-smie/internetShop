@@ -45,8 +45,8 @@ export default {
     methods: {
         ...mapActions([
             "GET_MAIN_PAGE_PRODUCTS_API",
-            "ADD_PRODUCT_TO_CART",
             "GET_ALL_PRODUCTS_API",
+            "GET_CART_PRODUCTS",
         ]),
         getFiltredProduct() {
             this.GET_MAIN_PAGE_PRODUCTS_API();
@@ -59,7 +59,18 @@ export default {
         },
 
         addToCart(product) {
-            this.ADD_PRODUCT_TO_CART(product);
+            fetch("http://localhost:3000/cart", {
+                method: "POST",
+                body: JSON.stringify(product),
+                headers: { "Content-Type": "application/json" },
+            })
+                .then((res) => res.json())
+                .then(() => {
+                    this.GET_CART_PRODUCTS();
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         },
         // getProducts() {
         //     async function get() {

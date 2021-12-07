@@ -26,7 +26,7 @@
                     alt="basket"
                 />
                 <div v-if="CART.length" class="header__count">
-                    {{ CART.length }}
+                    {{ COUNT }}
                 </div>
             </router-link>
         </div>
@@ -41,7 +41,7 @@ import { mapGetters } from "vuex";
 export default {
     name: "header-shop",
     computed: {
-        ...mapGetters(["CART"]),
+        ...mapGetters(["CART", "COUNT"]),
     },
 };
 </script>

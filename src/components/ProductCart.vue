@@ -6,17 +6,13 @@
         <div class="product__box-text">
             <a href="#" class="product__link-p">{{ product.title }}</a>
             <div class="product__prise">
-                <p class="product__prise-p">{{ product.price }}</p>
+                <p class="product__prise-p">{{ product.price }} $</p>
                 <div class="product__stars">
-                    ddd4f4
-                    <!-- <i
-                                v-for="star in product.stars"
-                                class="fas fa-star fa-xs"
-                            ></i> -->
-                    <!-- <i class="fas fa-star fa-xs"></i
-                            ><i class="fas fa-star fa-xs"></i
-                            ><i class="fas fa-star fa-xs"></i
-                            ><i class="fas fa-star fa-xs"></i> -->
+                    <i
+                        v-for="star in stars"
+                        :key="star"
+                        class="fas fa-star fa-xs"
+                    ></i>
                 </div>
             </div>
         </div>
@@ -34,6 +30,11 @@
 <script>
 export default {
     name: "product-cart",
+    data() {
+        return {
+            stars: this.arr(this.product.stars),
+        };
+    },
     props: {
         product: {
             type: Object,
@@ -43,6 +44,13 @@ export default {
         },
     },
     methods: {
+        arr(num) {
+            let arr = [];
+            for (let i = 0; i < num; i++) {
+                arr.push(i);
+            }
+            return arr;
+        },
         addToCart() {
             this.$emit("addToCart", this.product);
         },

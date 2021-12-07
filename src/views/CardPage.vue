@@ -17,7 +17,8 @@
         >
             <img :src="product.url" alt="product" class="cart__img" />
             <p class="cart__title">{{ product.title }}</p>
-            <p class="cart__price">{{ product.price }}</p>
+            <p class="quantity">Quantity {{ product.quantity }}</p>
+            <p class="cart__price">{{ product.price }} $</p>
             <button class="cart__button">delite</button>
         </div>
     </div>

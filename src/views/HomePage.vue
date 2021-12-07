@@ -28,6 +28,7 @@ import HeaderShop from "../components/HeaderShop.vue";
 import NavShop from "../components/NavShop.vue";
 import OffersShop from "../components/OffersShop.vue";
 import SubscribeShop from "../components/SubscribeShop.vue";
+import { mapActions } from "vuex";
 
 export default {
     components: {
@@ -43,6 +44,12 @@ export default {
     name: "Home",
     data() {
         return {};
+    },
+    methods: {
+        ...mapActions(["GET_CART_PRODUCTS"]),
+    },
+    mounted() {
+        this.GET_CART_PRODUCTS();
     },
 };
 </script>
