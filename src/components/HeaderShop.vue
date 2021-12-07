@@ -1,5 +1,6 @@
 <template>
     <div class="header container">
+        hello
         <div class="header__logo logo">
             <a href="http://localhost:8080" class="logo__link">
                 <img class="logo__img" src="/img/logo.png" alt="logo" />
