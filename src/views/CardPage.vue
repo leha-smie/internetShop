@@ -17,7 +17,15 @@
         >
             <img :src="product.url" alt="product" class="cart__img" />
             <p class="cart__title">{{ product.title }}</p>
-            <p class="quantity">Quantity {{ product.quantity }}</p>
+            <div class="cart__quantity-blok">
+                <button class="cart__increase" @click="increase(product)">
+                    +
+                </button>
+                <p class="quantity">Quantity {{ product.quantity }}</p>
+                <button class="cart__decrease" @click="decrease(product)">
+                    -
+                </button>
+            </div>
             <p class="cart__price">{{ product.price }} $</p>
             <button class="cart__button" @click="removeProduct(product)">
                 delite
@@ -45,6 +53,26 @@ export default {
                 body: JSON.stringify(product),
                 header: { "Content-Type": "application/json" },
             }).then(() => this.GET_CART_PRODUCTS());
+        },
+        increase(product) {
+            const quantity = product.quantity + 1;
+            fetch(`http://localhost:3000/increaseProduct/${product.id}`, {
+                method: "PUT",
+                body: JSON.stringify({ quantity: quantity }),
+                header: { "Content-Type": "application/json" },
+            }).then(() => this.GET_CART_PRODUCTS());
+        },
+        decrease(product) {
+            if (product.quantity === 1) {
+                return;
+            } else {
+                const quantity = product.quantity - 1;
+                fetch(`http://localhost:3000/decreaseProduct/${product.id}`, {
+                    method: "PUT",
+                    body: JSON.stringify({ quantity: quantity }),
+                    header: { "Content-Type": "application/json" },
+                }).then(() => this.GET_CART_PRODUCTS());
+            }
         },
     },
     mounted() {
@@ -94,6 +122,18 @@ export default {
         font-size: 23px;
         color: gray;
         text-align: center;
+    }
+    &__increase {
+        position: relative;
+        left: 56px;
+        bottom: 3px;
+        width: 15px;
+    }
+    &__decrease {
+        position: relative;
+        left: 56px;
+        bottom: -3px;
+        width: 15px;
     }
 }
 .logo {

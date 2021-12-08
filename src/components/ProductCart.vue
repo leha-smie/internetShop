@@ -139,7 +139,6 @@ export default {
 
     &__add {
         padding: 14px;
-
         border: 1px solid #ffffff;
 
         display: none;
