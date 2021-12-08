@@ -19,7 +19,9 @@
             <p class="cart__title">{{ product.title }}</p>
             <p class="quantity">Quantity {{ product.quantity }}</p>
             <p class="cart__price">{{ product.price }} $</p>
-            <button class="cart__button">delite</button>
+            <button class="cart__button" @click="removeProduct(product)">
+                delite
+            </button>
         </div>
     </div>
 </template>
@@ -37,6 +39,13 @@ export default {
     },
     methods: {
         ...mapActions(["GET_CART_PRODUCTS"]),
+        removeProduct(product) {
+            fetch("http://localhost:3000/product", {
+                method: "DELETE",
+                body: JSON.stringify(product),
+                header: { "Content-Type": "application/json" },
+            }).then(() => this.GET_CART_PRODUCTS());
+        },
     },
     mounted() {
         this.GET_CART_PRODUCTS();
